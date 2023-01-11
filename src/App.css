@@ -1,0 +1,10 @@
+/* 
+body {
+  background-color: #fff;
+} */
+*{
+  font-family: 'Inter', sans-serif;
+}
+#root {
+  height: 100vh;
+}
