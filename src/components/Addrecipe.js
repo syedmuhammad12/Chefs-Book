@@ -3,11 +3,6 @@ import "./Addrecipe.css";
 import Avatar from "react-avatar-edit";
 import 'primeicons/primeicons.css';
 import { Link } from 'react-router-dom';
-import { Dialog } from 'primereact/dialog';
-import { InputText } from 'primereact/inputtext';
-import { Button } from 'react-bootstrap';
-import img from '../assets/img/uploadpic.jpg'
-// import e from "cors";
 
 const Addrecipe = () => {
 
