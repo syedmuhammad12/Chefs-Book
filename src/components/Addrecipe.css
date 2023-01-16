@@ -141,26 +141,94 @@ main {
 }
 
 .img-div{
-    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.img-div input{
+    display: none;
+}
+
+.img-div label{
+    border-radius: 9px;
+    border: 1px solid #EA0C5C;
+    padding: 8px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.img-div label:hover{
+    color: #fff;
+    background: #EA0C5C;
+}
+
+.img-div img{
+    border-radius: 5px;
 }
 
 .picSize {
     margin-top: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
     width: 256px;
     height: 256px;
-    border: 2px solid #EA0C5C;
-    padding: 20px;
+    border: 1px solid #000000;
+    padding: 10px;
 }
 
-.inputTextRecipeName{
-    width: 75%;
-    min-height: 40px;
+.firstOne{
+    display: flex;
+    flex-direction: row;
+    margin-top: 50px;
+    margin-bottom: 60px;
+}
+
+.recipeN{
+    align-self: center;
+}
+
+.recipeN input{
+    width: 500px;
+    height: 75px;
+    border-radius: 10px;
     text-align: center;
+    border: .5px solid #000;
+    transition: .3s;
+}
+
+.recipeN input:hover{
+    border-color: #EA0C5C;
+}
+
+.recipeN input:is(:focus, :valid){
+    border-color: #EA0C5C;
+}
+
+.secondOne{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.ingredientsRecipe{
+    width: 1250px;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.methodRecipe{
+    width: 1250px;
+    height: 150px;
+    margin-bottom: 20px;
+}
+
+.btn{
+    margin-bottom: 30px;
+    width: 10%;
 }
 
 textarea{
-    width: 100%;
-    height: 59px;
     padding: 15px;
     outline: none;
     font-size: 16px;
@@ -168,8 +236,6 @@ textarea{
     border-radius: 5px;
     resize: none;
     transition: .3s;
-    max-height: 330px;
-    min-height: 100px;
 }
 
 textarea:is(:focus, :valid){
@@ -178,8 +244,108 @@ textarea:is(:focus, :valid){
     padding: 14px;
 }
 
-.methodRecipe{
-    min-height: 150px;
+@media(max-width: 1500px){
+    .ingredientsRecipe {
+        width: 1100px;
+    }
+    .methodRecipe{
+        width: 1100px;
+    }
+}
+
+@media(max-width: 1360px){
+    .ingredientsRecipe {
+        width: 1000px;
+    }
+    .methodRecipe{
+        width: 1000px;
+    }
+}
+
+@media(max-width: 1260px){
+    .ingredientsRecipe {
+        width: 900px;
+    }
+    .methodRecipe{
+        width: 900px;
+    }
+    .recipeN input {
+        width: 400px;
+    }
+}
+
+@media(max-width: 1150px){
+    .ingredientsRecipe {
+        width: 800px;
+    }
+    .methodRecipe{
+        width: 800px;
+    }
+    .recipeN input {
+        width: 300px;
+    }
+}
+
+@media(max-width: 1050px){
+    .ingredientsRecipe {
+        width: 700px;
+    }
+    .methodRecipe{
+        width: 700px;
+    }
+    .recipeN input {
+        width: 300px;
+    }
+}
+
+@media(max-width: 992px){
+    .firstOne{
+        display: flex;
+        flex-direction: column;
+    }
+    .img-div{
+        margin-bottom: 50px;
+    }
+    .ingredientsRecipe {
+        width: 500px;
+    }
+    .methodRecipe{
+        width: 500px;
+    }
+    .btn{
+        width: 20%;
+    }
+}
+
+@media(max-width: 600px){
+    .ingredientsRecipe {
+        width: 400px;
+        height: 90px;
+    }
+    .methodRecipe{
+        width: 400px;
+        height: 90px;
+    }
+    .recipeN input{
+        width: 200px;
+        font-size: 13px;
+    }
+}
+
+@media(max-width:500px){
+    .ingredientsRecipe {
+        width: 300px;
+        height: 80px;
+    }
+    .methodRecipe{
+        width: 300px;
+        height: 80px;
+    }
+    .recipeN input{
+        width: 200px;
+        font-size: 12px;
+        height: 40px;
+    }
 }
 
 @media screen and (min-width: 808px) {

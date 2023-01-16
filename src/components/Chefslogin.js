@@ -1,20 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Chefslogin.css";
 import headerimgg from "../assets/img/headerimgg.png";
 import { useNavigate } from "react-router-dom";
 
 const Chefslogin = () => {
 
-    const [popupStyle, showPopup] = useState("hide")
+    const [popupStyle, showPopup] = useState("hide");
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const win = window.sessionStorage;
 
     const popup = () => {
         showPopup("login-popup")
         setTimeout(() => showPopup("hide"), 3000)
     }
 
-    // Way to use props..
-    // const email = props.email;
-    // const password = props.password;
+    const handleSubmit = (e) =>{
+        e.prevetDefault();
+        win.clear();
+        setName('');
+        setEmail('');
+        setPassword('');
+    }
+
+    useEffect(()=>{
+        if (win.getItem('name'))
+        setName(win.getItem('name'));
+        if (win.getItem('email'))
+        setEmail(win.getItem('email'));
+        if (win.getItem('password'))
+        setPassword(win.getItem('password'));
+    },[])
+
+    useEffect(()=>{
+        win.setItem('name',name);
+        win.setItem('email',email);
+        win.setItem('password',password);
+    },[name,email,password])
 
     let navigateToSignup = useNavigate();
     const routeChangeToSignup = () => {
@@ -29,26 +53,29 @@ const Chefslogin = () => {
     }
 
     return (
-        <div className="page">
-            <div className="cover">
-                <h1>LOGIN</h1>
-                <input type="text" autoComplete="off" placeholder="enter your username"></input>
-                <input type="password" autoComplete="off" placeholder="enter your password"></input>
-                <button className="btn-login" 
-                    onClick={() => {
-                        // routeChangeToChefMainPage();
-                        popup();}} 
-                    type="submit">SUBMIT</button>
-                <div className="alt-login align-items-center">
-                    <span className="chefsDHA">DONT HAVE AN ACCOUNT? <button className="chefsSignup" onClick={routeChangeToSignup}>SIGN UP NOW</button></span>
-                    <img className="chefsLogo" src={headerimgg} alt="Header Img" />
-                </div>
-                <div className={popupStyle}>
-                        <h3>Login Failed</h3>
-                        <p>Username Or Password Incorrect</p>
+        <form onSubmit={handleSubmit}>
+            <div className="page">
+                <div className="cover">
+                    <h1>LOGIN</h1>
+                    <input type="text" value={name} onChange={(e)=>setName(e.target.value)} autoComplete="off" placeholder="enter your username"></input>
+                    <input type="password" value={password} onChange={(e)=>setPassword(e.target.value)} autoComplete="off" placeholder="enter your password"></input>
+                    <button className="btn-login" 
+                        onClick={() => {
+                            // routeChangeToChefMainPage();
+                            popup();}} 
+                        type="submit">SUBMIT</button>
+                    <div className="alt-login align-items-center">
+                        <span className="chefsDHA">DONT HAVE AN ACCOUNT? <button className="chefsSignup" onClick={routeChangeToSignup}>SIGN UP NOW</button></span>
+                        <img className="chefsLogo" src={headerimgg} alt="Header Img" />
+                    </div>
+                    <div className={popupStyle}>
+                            <h3>Login Failed</h3>
+                            <p>Username Or Password Incorrect</p>
+                    </div>
                 </div>
             </div>
-        </div>
+        </form>
+        
     )
 }
 

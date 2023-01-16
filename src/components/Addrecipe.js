@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./Addrecipe.css";
+import Avatar from "react-avatar-edit";
+import 'primeicons/primeicons.css';
 import { Link } from 'react-router-dom';
+import { Dialog } from 'primereact/dialog';
+import { InputText } from 'primereact/inputtext';
+import { Button } from 'react-bootstrap';
+import img from '../assets/img/uploadpic.jpg'
+// import e from "cors";
 
 const Addrecipe = () => {
 
@@ -10,17 +17,10 @@ const Addrecipe = () => {
         setFile(URL.createObjectURL(e.target.files[0]));
     }
 
-    const [show, setShow] = useState(false)
-    
-    // const textarea = document.querySelector("textarea");
-    // textarea.addEventListener("keyup", e =>{
-    //     textarea.style.height = "63px";
-    //     let scHeight = e.target.scrollHeight;
-    //     textarea.style.height = `${scHeight}px`;
-    // });
+    const [show, setShow] = useState(false);
 
     return (
-        <main className={show ? 'space-toggle' : null }>
+        <main className={show ? 'space-toggle' : null}>
             <header className={`header ${show ? 'space-toggle' : null}`}>
                 <div className="header-toggle" onClick={() => setShow(!show)}>
                     <i className="fa-solid fa-bars"></i>
@@ -60,38 +60,26 @@ const Addrecipe = () => {
                 </nav>
             </aside>
             <h1 className="pt-4">Add Recipe</h1>
-            <hr/>
-            <div className="menu-items container-fluid mt-5">
-                <div className="row">
-                    <div className="col-11 mx-auto">
-                        <div className="row my-5">
-                            <div className="item1 col-12 col-md-6 col-lg-6 col-sl-4 my-5">
-                                <div className="row item-inside">
-                                    {/* For Images */}
-                                    <div className="col-12 col-md-12 col-lg-4 img-div">
-                                        <h3>Upload Picture:</h3>
-                                            <input className="inputPic" type="file" onChange={handleChange} />
-                                            <img className="picSize" src={file} />
-                                            <hr></hr>
-                                        </div>
-                                    {/* For Menu Description */}
-                                    <div className="col-12 col-md-12 col-lg-8">
-                                        <div className="main-title pt-4 pb-3">
-                                            <textarea className="inputTextRecipeName" placeholder="Enter Your Recipe's Name" required></textarea>
-                                            <hr></hr>
-                                            <textarea placeholder="Enter Your Recipe's Ingredients" required></textarea>
-                                            <hr></hr>
-                                            <textarea className="methodRecipe" placeholder="Enter Your Recipe's Method" required></textarea>
-                                            <hr></hr>
-                                            <button className="btn btn-primary">Save</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+            <hr />
+
+            <div>
+                <div className="firstOne justify-content-around">
+                    <div className="align-items-center img-div">
+                        <input className="inputPic" id="imgs" type="file" onChange={handleChange} />
+                        <img className="picSize" src={file} />
+                        <label htmlFor="imgs">Upload Picture</label>
+                    </div>
+                    <div className="recipeN">
+                        <input className="inputTextRecipeName" placeholder="Enter Your Recipe's Name" required></input>
                     </div>
                 </div>
+                <div className="secondOne">
+                    <textarea className="ingredientsRecipe" placeholder="Enter Your Recipe's Ingredients" required></textarea>
+                    <textarea className="methodRecipe" placeholder="Enter Your Recipe's Method" required></textarea>
+                    <button className="btn btn-primary">Save</button>
+                </div>
             </div>
+
         </main>
     )
 }
